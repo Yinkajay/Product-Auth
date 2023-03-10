@@ -1,26 +1,35 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App" />
-  <products-list></products-list>
+  <!-- <MainNavbar/> -->
+  <main-navbar></main-navbar>
+  <!-- <products-list></products-list> -->
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainNavbar from './components/UI/MainNavbar.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MainNavbar
   }
 }
 </script>
 
 <style>
+body{
+  padding: 70px 0 0 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

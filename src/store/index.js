@@ -8,9 +8,16 @@ const store = createStore({
         productsModule: products
     },
     state() {
-
+        return {
+        }
     },
     getters: {
+
+    },
+    mutations: {
+
+    },
+    actions: {
 
     }
 })
