@@ -1,10 +1,16 @@
 import { createStore } from "vuex";
+import auth from "./auth";
+import products from "./products";
 
 const store = createStore({
-    state(){
+    modules: {
+        authModule: auth,
+        productsModule: products
+    },
+    state() {
 
     },
-    getters:{
+    getters: {
 
     }
 })
