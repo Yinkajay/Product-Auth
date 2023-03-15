@@ -16,13 +16,19 @@ export default {
 </script>
 
 <style>
-body{
-  padding: 70px 0 0 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 60px 0 0 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-a{
+a {
   text-decoration: none;
   color: green;
   font-weight: bold;

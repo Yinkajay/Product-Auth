@@ -1,7 +1,4 @@
 <template>
-    <h1>
-        Hello World
-    </h1>
     <ul v-if="hasFetchedProducts">
         <product-item v-for="product in products" :key="product.id" :title="product.title"
             :description="product.description" :price="product.price"></product-item>

@@ -1,33 +1,37 @@
 <template>
     <section>
         <card-wrapper>
-            <form @submit.prevent="">
-                <div class="form-field">
+            <h2>Sign Up</h2>
+            <form @submit.prevent="submitFormHandler">
+                <div class="form-field" :class="{ invalid: !firstName.valid }">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" />
+                    <input type="text" id="firstName" v-model="firstName.val" @blur="clearValidity('firstName')" />
                 </div>
-                <div class="form-field">
+                <div class="form-field" :class="{ invalid: !lastName.valid }">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" />
+                    <input type="text" id="lastName" v-model="lastName.val" @blur="clearValidity('lastName')" />
                 </div>
-                <div class="form-field">
+                <div class="form-field" :class="{ invalid: !emailAddress.valid }">
                     <label for="emailAddress">Email Address</label>
-                    <input type="email" id="emailAddress" />
+                    <input type="email" id="emailAddress" v-model="emailAddress.val"
+                        @blur="clearValidity('emailAddress')" />
                 </div>
-                <div class="form-field">
+                <div class="form-field" :class="{ invalid: !password.valid }">
                     <label for="password">Password</label>
-                    <input type="password" id="password" />
+                    <input type="password" id="password" v-model="password.val" @blur="clearValidity('password')" />
                 </div>
-                <div class="form-field">
+                <div class="form-field" :class="{ invalid: !confirmPassword.valid }">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" />
+                    <input type="password" id="confirmPassword" v-model="confirmPassword.val"
+                        @blur="clearValidity('confirmPassword')" @change="confirmPasswordHandler" />
+                    <p class="alert-message" v-if="!confirmPassword.valid">Passwords are not the same</p>
                 </div>
                 <div>
                     <button>Create Account</button>
                 </div>
             </form>
             <div>
-                <p>Already have an account
+                <p>Already have an account?
                     <router-link to="/login">Login</router-link>
                 </p>
             </div>
@@ -40,17 +44,75 @@
 export default {
     data() {
         return {
-            firstName: '',
-            lastName: '',
-            emailAddress: '',
-            password: '',
-            confirmPassword: ''
+            firstName: {
+                val: '',
+                valid: true
+            },
+            lastName: {
+                val: '',
+                valid: true
+            },
+            emailAddress: {
+                val: '',
+                valid: true
+            },
+            password: {
+                val: '',
+                valid: true
+            },
+            confirmPassword: {
+                val: '',
+                valid: true
+            },
+            formIsValid: false
+        }
+    },
+    methods: {
+        clearValidity(field) {
+            this[field].valid = true
+        },
+        confirmPasswordHandler() {
+            if (this.password.val !== this.confirmPassword.val) {
+                console.log('passwords are not the same')
+                this.confirmPassword.valid = false
+                return
+            }
+        },
+        submitFormHandler() {
+            this.formIsValid = true
+            if (this.firstName.val.trim() === '') {
+                console.log('first name is invalid')
+                this.firstName.valid = false
+                this.formIsValid = false
+            }
+            if (this.lastName.val.trim() === '') {
+                console.log('last name is invalid')
+                this.lastName.valid = false
+                this.formIsValid = false
+            }
+            if (this.emailAddress.val.trim() === '' || !this.emailAddress.val.includes('@')) {
+                console.log('email is invalid')
+                this.emailAddress.valid = false
+                this.formIsValid = false
+            }
+            if (this.password.val.trim() === '' || this.password.val.length <= 6) {
+                console.log('password is invalid')
+                this.password.valid = false
+                this.formIsValid = false
+            }
+            this.confirmPasswordHandler()
+            this.$router.replace('/')
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+h2 {
+    color: rgb(108, 187, 108);
+    margin: 10px 0;
+}
+
 .form-field {
     padding: 0.5rem;
 }
@@ -67,7 +129,13 @@ export default {
     font-size: 20px;
 }
 
+.invalid input {
+    border: 2px solid red;
+}
 
+.alert-message {
+    color: red;
+}
 
 button {
     padding: 5px 20px;

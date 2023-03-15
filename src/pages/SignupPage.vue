@@ -1,11 +1,13 @@
 <template>
-    <h2>Sign Up</h2>
-    <signup-form></signup-form>
+    <div class="signup-bg"></div>
+    <div class="signup">
+        <signup-form></signup-form>
+    </div>
 </template>
 
 <script>
 import SignupForm from '@/components/auth/SignupForm.vue';
-export default{
+export default {
     components: {
         SignupForm
     }
@@ -13,7 +15,18 @@ export default{
 </script>
 
 <style scoped>
-h2{
-    color: rgb(108, 187, 108);
+
+.signup-bg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/authbackground.webp');
+    background-size: cover;
+    filter: opacity(0.89) blur(1px);
+    z-index: -1;
+}
+
+.signup {
+    z-index: 10;
 }
 </style>

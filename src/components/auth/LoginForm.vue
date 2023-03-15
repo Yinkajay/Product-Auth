@@ -1,14 +1,15 @@
 <template>
+    <card-wrapper>
     <section>
-        <card-wrapper>
+            <h2>Login</h2>
             <form @submit.prevent="submitHandler">
                 <div class="form-field" :class="{ invalid: username.invalid }">
                     <label>Username/Email</label>
-                    <input type="text" v-model="username.val">
+                    <input type="text" v-model="username.val" @blur="clearValidity('username')">
                 </div>
                 <div class="form-field" :class="{ invalid: password.invalid }">
                     <label>Password</label>
-                    <input type="password" v-model="password.val">
+                    <input type="password" v-model="password.val" @blur="clearValidity('password')">
                 </div>
                 <div>
                     <button>Login</button>
@@ -19,12 +20,12 @@
                     <router-link to="/signup">here</router-link>
                 </p>
             </div>
-        </card-wrapper>
-    </section>
+        </section>
+    </card-wrapper>
 </template>
 
 
-<script scoped>
+<script>
 export default {
     data() {
         return {
@@ -40,15 +41,15 @@ export default {
         }
     },
     methods: {
-        clearValidity(){
-            
+        clearValidity(field) {
+            this[field].invalid = false
         },
         submitHandler() {
             this.formIsValid = true
             if (this.username.val.trim() === '') {
                 console.log('username is invalid')
                 this.username.invalid = true
-                this.formIsValid = false    
+                this.formIsValid = false
             }
             if (this.password.val.trim() === '' || this.password.val.length <= 6) {
                 console.log('password is invalid')
@@ -56,6 +57,12 @@ export default {
                 this.formIsValid = false
                 return
             }
+            if (!this.formIsValid) {
+                return
+            }
+            this.formIsValid = true
+            this.$store.dispatch('login')
+            this.$router.replace('/')
         }
     }
 }
@@ -63,6 +70,11 @@ export default {
 </script>
 
 <style scoped>
+
+h2 {
+    color: rgb(108, 187, 108);
+}
+
 .form-field {
     padding: 0.5rem;
 }
