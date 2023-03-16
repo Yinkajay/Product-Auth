@@ -27,11 +27,12 @@
 .lds-roller div:after {
     content: " ";
     display: block;
+    font-weight: 900;
     position: absolute;
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #fff;
+    background: rgb(74, 136, 74);
     margin: -4px 0 0 -4px;
 }
 

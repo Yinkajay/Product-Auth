@@ -7,7 +7,13 @@ import LoadingSpinner from './components/UI/LoadingSpinner.vue'
 import store from './store'
 import router from './router.js'
 
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts } from "oh-vue-icons/icons";
+
+addIcons(RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts);
+
 const app = createApp(App)
+app.component("v-icon", OhVueIcon);
 
 app.component('products-list', ProductsList)
 app.component('product-item', ProductItem)

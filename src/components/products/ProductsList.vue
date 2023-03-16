@@ -1,7 +1,8 @@
 <template>
     <ul v-if="hasFetchedProducts">
-        <product-item v-for="product in products" :key="product.id" :title="product.title"
-            :description="product.description" :price="product.price"></product-item>
+        <product-item v-for="product in products" :key="product.id" :title="product.title" :thumbnail="product.thumbnail"
+            :description="product.description" :price="product.price" :category="product.category"
+            :id="product.id"></product-item>
     </ul>
 </template>
 
@@ -18,14 +19,20 @@ export default {
     },
     computed: {
         products() {
-            console.log(this.$store.getters['products'])
+            // console.log(this.$store.getters['products'])
             return this.$store.getters.products
         }
     },
     methods: {
-       async fetchProducts() {
+        async fetchProducts() {
             console.log('fetching')
-          await  this.$store.dispatch('getProducts')
+
+            // if (this.$store.getters['hasProducts']) {
+            //     console.log('products already fetched')
+            //     return
+            // }
+
+            await this.$store.dispatch('getProducts')
             console.log('fetched')
             this.hasFetchedProducts = true
         }

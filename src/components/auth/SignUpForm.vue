@@ -3,6 +3,9 @@
         <card-wrapper>
             <h2>Sign Up</h2>
             <form @submit.prevent="submitFormHandler">
+                <div class="loading-spinner" v-if="loading">
+                    <loading-spinner></loading-spinner>
+                </div>
                 <div class="form-field" :class="{ invalid: !firstName.valid }">
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName" v-model="firstName.val" @blur="clearValidity('firstName')" />
@@ -27,7 +30,9 @@
                     <p class="alert-message" v-if="!confirmPassword.valid">Passwords are not the same</p>
                 </div>
                 <div>
-                    <button>Create Account</button>
+                    <button>Create Account
+                        <v-icon name="md-manageaccounts"/>
+                    </button>
                 </div>
             </form>
             <div>
@@ -64,7 +69,8 @@ export default {
                 val: '',
                 valid: true
             },
-            formIsValid: false
+            formIsValid: false,
+            loading: false
         }
     },
     methods: {
@@ -101,13 +107,31 @@ export default {
                 this.formIsValid = false
             }
             this.confirmPasswordHandler()
-            this.$router.replace('/')
+            this.formIsValid = true
+
+            this.loading = true
+            this.$store.dispatch('login')
+            setTimeout(() => {
+                this.loading = false
+                this.$router.replace('/')
+            }, 2000);
+
         }
     }
 }
 </script>
 
 <style scoped>
+form {
+    position: relative;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 40%;
+    left: calc(50% - 40px);
+}
+
 h2 {
     color: rgb(108, 187, 108);
     margin: 10px 0;
@@ -144,6 +168,7 @@ button {
     border: none;
     color: white;
     transition: 0.2s ease-in;
+    margin: 20px 0;
 }
 
 button:hover {

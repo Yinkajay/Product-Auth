@@ -1,5 +1,5 @@
 <template>
-    <h2>Products</h2>
+    <h2>Available Products</h2>
     <products-list></products-list>
 </template>
 

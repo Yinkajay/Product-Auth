@@ -3,16 +3,23 @@
     <section>
             <h2>Login</h2>
             <form @submit.prevent="submitHandler">
+                <div class="loading-spinner" v-if="loading">
+                    <loading-spinner></loading-spinner>
+                </div>
                 <div class="form-field" :class="{ invalid: username.invalid }">
                     <label>Username/Email</label>
                     <input type="text" v-model="username.val" @blur="clearValidity('username')">
+                    <p v-if='username.invalid'>Name can't be empty</p>
                 </div>
                 <div class="form-field" :class="{ invalid: password.invalid }">
                     <label>Password</label>
                     <input type="password" v-model="password.val" @blur="clearValidity('password')">
+                    <p v-if="password.invalid">Password cannot be less than 6 characters</p>
                 </div>
                 <div>
-                    <button>Login</button>
+                    <button>Login
+                        <v-icon name="md-login" />
+                    </button>
                 </div>
             </form>
             <div>
@@ -37,7 +44,8 @@ export default {
                 val: '',
                 invalid: false
             },
-            formIsValid: false
+            formIsValid: false,
+            loading: false
         }
     },
     methods: {
@@ -61,8 +69,15 @@ export default {
                 return
             }
             this.formIsValid = true
-            this.$store.dispatch('login')
-            this.$router.replace('/')
+            // this.$store.dispatch('login')
+            // this.$router.replace('/')
+
+            this.loading = true
+            setTimeout(() => {
+                this.loading = false
+                this.$router.replace('/')
+                this.$store.dispatch('login')
+            }, 2000);
         }
     }
 }
@@ -70,6 +85,15 @@ export default {
 </script>
 
 <style scoped>
+form {
+    position: relative;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 4%;
+    left: calc(50% - 40px);
+}
 
 h2 {
     color: rgb(108, 187, 108);
@@ -102,6 +126,7 @@ button {
     border: none;
     color: white;
     transition: 0.2s ease-in;
+    margin: 20px 0;
 }
 
 button:hover {

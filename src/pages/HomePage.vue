@@ -1,6 +1,6 @@
 <template>
     <div v-if="!isLoggedIn">
-        <h2>Welcome to the Vstore</h2>
+        <h2>Welcome to Shoppa</h2>
         <p> <router-link to="/signup">Signup</router-link> to start shopping or <router-link to="/login">login</router-link>
             if
             you have an account
@@ -16,6 +16,7 @@
 
 <script>
 export default {
+
     computed: {
         isLoggedIn() {
             return this.$store.getters['isLoggedIn']
@@ -24,4 +25,12 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+@media only screen and (max-width: 992px) and (min-width: 600px) {
+    p{
+        color: blue;
+    }
+}
+
+</style>

@@ -2,20 +2,24 @@
     <header>
         <nav>
             <div id="brand-name">
-                <router-link to="/">VStore</router-link>
+                <router-link to="/">Shoppa</router-link>
             </div>
             <div>
                 <div class="nav-link">
-                    <router-link to='/'>Home</router-link>
+                    <router-link to='/'>Home
+                        <v-icon name="ri-home-smile-line" scale="0.8"/>
+                    </router-link>
                 </div>
                 <div class="nav-link" v-if="isLoggedIn">
-                    <router-link to="/products">Products</router-link>
+                    <router-link to="/products">Products
+                        <v-icon name="bi-shop" />
+                    </router-link>
                 </div>
                 <div class="nav-link" v-if="!isLoggedIn">
-                    <router-link to="/Signup">Signup</router-link>
+                    <router-link to="/signup">Signup</router-link>
                 </div>
                 <div class="auth-link" v-if="!isLoggedIn">
-                    <router-link to="/Login">Login</router-link>
+                    <router-link to="/login">Login</router-link>
                 </div>
                 <div class="auth-link" v-else>
                     <button @click="logout">Logout</button>
@@ -27,6 +31,7 @@
 
 
 <script>
+// import { RiHomeFill } from "oh-vue-icons/icons"
 export default {
     computed: {
         isLoggedIn() {
@@ -44,7 +49,8 @@ export default {
 <style scoped>
 header {
     height: 60px;
-    background-color: rgb(55, 98, 97);
+    /* background-color: rgb(205, 223, 223); */
+    background-color: black;
     color: rgb(108, 187, 108);
     position: fixed;
     top: 0;
@@ -53,6 +59,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Kanit', sans-serif;
 }
 
 nav {
@@ -80,6 +87,7 @@ header a {
 
 .nav-link a.router-link-active {
     border-bottom: 2px solid;
+    font-weight: bold;
 }
 
 .nav-link {
@@ -87,15 +95,17 @@ header a {
     padding: 5px 10px;
 }
 
-.auth-link{
+.auth-link {
     display: inline-block;
     padding: 5px 10px;
 }
 
-.auth-link a, .auth-link button{
+.auth-link a,
+.auth-link button {
     color: white;
     background-color: rgb(108, 187, 108);
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-size: 16px;
     padding: 6px 12px;
     margin: 10px 0;
     border-radius: 7px;
@@ -105,11 +115,12 @@ header a {
 }
 
 
-.auth-link a:hover, .auth-link button:hover{
+.auth-link a:hover,
+.auth-link button:hover {
     color: rgb(108, 187, 108);
     background-color: white;
     border: 1px solid rgb(108, 187, 108);
-    
+
 }
 
 .auth-link a.router-link-active {
