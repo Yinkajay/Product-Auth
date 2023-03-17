@@ -109,8 +109,10 @@ export default {
             this.confirmPasswordHandler()
             this.formIsValid = true
 
+            let profileName = this.firstName.val
+
             this.loading = true
-            this.$store.dispatch('login')
+            this.$store.dispatch('login', {profileName})
             setTimeout(() => {
                 this.loading = false
                 this.$router.replace('/')

@@ -51,11 +51,13 @@ li {
     padding: 10px;
     vertical-align: top;
     display: inline-block;
+    background-color: white;
     box-shadow: 0px 0px 2px #00000087;
     width: 200px;
     min-height: 200px;
     border-radius: 5px;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    margin: 5px;
 }
 
 button{

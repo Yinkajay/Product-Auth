@@ -12,8 +12,8 @@ const router = createRouter({
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/home', component: HomePage },
-        { path: '/login', component: LoginPage,  meta: { requiresUnauth: true }},
-        { path: '/signup', component: SignupPage,  meta: { requiresUnauth: true } },
+        { path: '/login', component: LoginPage, meta: { requiresUnauth: true } },
+        { path: '/signup', component: SignupPage, meta: { requiresUnauth: true } },
         { path: '/products', component: ProductsPage, meta: { requiresAuth: true } },
         { path: '/products/:productId', component: ProductDetail },
         { path: '/:notFound(.*)', component: NotFound }
@@ -24,9 +24,9 @@ router.beforeEach(function (to, from, next) {
     if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
         console.log('no')
         next('login')
-    } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {
+    } else if (to.meta.requiresUnauth && store.getters.isLoggedIn === true) {
         console.log('no')
-        next('/home')
+        next('/')
     } else {
         console.log('yes')
         next()

@@ -22,7 +22,7 @@ export default {
     height: 100%;
     background-image: url('../assets/authbackground.webp');
     background-size: cover;
-    filter: opacity(0.89) blur(1px);
+    /* filter: opacity(0.89) blur(1px); */
     z-index: -1;
 }
 

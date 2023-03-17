@@ -1,6 +1,7 @@
 export default{
-    login(context){
-        context.commit('loginHandler')
+    login(context, payload){
+        console.log(payload.profileName)
+        context.commit('loginHandler', payload.profileName)
     },
     logout(context){
         context.commit('logoutHandler')

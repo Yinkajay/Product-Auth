@@ -9,7 +9,6 @@
     <div v-else>
         <h2>Hello (name), you can view our catalog</h2>
         <router-link to="/products">here.</router-link>
-        here.
     </div>
 </template>
 
@@ -25,7 +24,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
+
+body{
+    background-image: url('../assets/homebackground.webp');
+    background-size: cover;
+    /* background-color: red; */
+}
+
 
 @media only screen and (max-width: 992px) and (min-width: 600px) {
     p{

@@ -1,6 +1,6 @@
 <template>
     <card-wrapper>
-    <section>
+        <section>
             <h2>Login</h2>
             <form @submit.prevent="submitHandler">
                 <div class="loading-spinner" v-if="loading">
@@ -71,12 +71,14 @@ export default {
             this.formIsValid = true
             // this.$store.dispatch('login')
             // this.$router.replace('/')
-
+            let profileName = this.username.val
             this.loading = true
             setTimeout(() => {
                 this.loading = false
                 this.$router.replace('/')
-                this.$store.dispatch('login')
+                this.$store.dispatch('login', {
+                    profileName
+                })
             }, 2000);
         }
     }

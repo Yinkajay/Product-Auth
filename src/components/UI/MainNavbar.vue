@@ -6,8 +6,8 @@
             </div>
             <div>
                 <div class="nav-link">
-                    <router-link to='/'>Home
-                        <v-icon name="ri-home-smile-line" scale="0.8"/>
+                    <router-link to='/home'>Home
+                        <v-icon name="ri-home-smile-line" scale="0.8" />
                     </router-link>
                 </div>
                 <div class="nav-link" v-if="isLoggedIn">
@@ -24,33 +24,60 @@
                 <div class="auth-link" v-else>
                     <button @click="logout">Logout</button>
                 </div>
+                <div class="nav-link" v-if="isLoggedIn">
+                    <p>Welcome {{ username }}</p>
+                </div>
             </div>
         </nav>
     </header>
 </template>
 
+<script setup>
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import useFetchUser from '@/composables/useFetchUser';
 
-<script>
+const store = useStore();
+const router = useRouter()
+function logout() {
+    store.dispatch('logout')
+    router.replace('/')
+}
+
+const isLoggedIn = computed(function () {
+    return store.getters['isLoggedIn']
+})
+
+
+const username = computed(function () {
+    return useFetchUser()
+})
+</script>
+
+<!-- <script>
 // import { RiHomeFill } from "oh-vue-icons/icons"
 export default {
     computed: {
         isLoggedIn() {
             return this.$store.getters['isLoggedIn']
-        }
+        },
+
     },
     methods: {
         logout() {
             this.$store.dispatch('logout')
+            this.$router.replace('/')
         }
     }
 }
-</script>
+</script> -->
 
 <style scoped>
 header {
     height: 60px;
     /* background-color: rgb(205, 223, 223); */
-    background-color: black;
+    background-color: white;
     color: rgb(108, 187, 108);
     position: fixed;
     top: 0;
@@ -93,6 +120,10 @@ header a {
 .nav-link {
     display: inline-block;
     padding: 5px 10px;
+}
+
+.nav-link a:hover {
+    color: rgb(108, 187, 108);
 }
 
 .auth-link {

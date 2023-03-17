@@ -5,7 +5,8 @@ import actions from './actions'
 export default {
     state() {
         return {
-            isLoggedIn: null
+            isLoggedIn: true,
+            username: ''
         }
     },
     getters,
