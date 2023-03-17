@@ -78,8 +78,6 @@ button:hover a{
 }
 
 @media only screen and (max-width: 992px) and (min-width: 600px) {
-    li {
-        display: none;
-    }
+
 }
 </style>

@@ -4,7 +4,7 @@
             <div id="brand-name">
                 <router-link to="/">Shoppa</router-link>
             </div>
-            <div>
+            <div class="nav-links">
                 <div class="nav-link">
                     <router-link to='/home'>Home
                         <v-icon name="ri-home-smile-line" scale="0.8" />
@@ -28,6 +28,10 @@
                     <p>Welcome {{ username }}</p>
                 </div>
             </div>
+            <!-- <input type="checkbox" id="isChecked">
+            <label for="isChecked" class="nav-btn">
+                <v-icon name="gi-hamburger-menu" scale="2"></v-icon>
+            </label> -->
         </nav>
     </header>
 </template>
@@ -158,5 +162,41 @@ header a {
     color: rgb(108, 187, 108);
     background-color: white;
     border: 2px solid rgb(108, 187, 108);
+}
+
+.nav-btn {
+    float: right;
+}
+
+#isChecked {
+    display: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav{
+        width: 90%;
+    }
+    #brand-name {
+    font-size: 20px;
+}
+svg{
+    display: none;
+}
+
+    .auth-link a, .nav-link a, .auth-link button, .nav-link p{
+        padding: 3px;
+        font-size: 13px;
+    }
+
+    .auth-link button{
+        padding: 5px;
+    }
+
 }
 </style>
