@@ -8,9 +8,9 @@ import store from './store'
 import router from './router.js'
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts, HiSolidStar, GiHamburgerMenu } from "oh-vue-icons/icons";
+import { RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts, HiSolidStar, GiHamburgerMenu, BiChevronDoubleLeft, BiChevronDoubleRight } from "oh-vue-icons/icons";
 
-addIcons(RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts, HiSolidStar, GiHamburgerMenu);
+addIcons(RiHomeSmileLine, BiShop, MdLogin, MdManageaccounts, HiSolidStar, GiHamburgerMenu, BiChevronDoubleLeft, BiChevronDoubleRight);
 
 const app = createApp(App)
 app.component("v-icon", OhVueIcon);
